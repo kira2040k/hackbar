@@ -1,0 +1,16 @@
+{
+    "name": "SiteExaminer",
+    "description": "A simple extension that tests websites for basic vulnerabilities.",
+    "version": "1.0",
+    "manifest_version": 3,
+    "permissions": ["storage","tabs","contextMenus","activeTab","privacy","webRequest"],
+    "action": {
+        "default_popup": "popup.html"
+    },
+    "content_scripts": [{
+            "matches": ["<all_urls>"],
+            "js": ["main.js"]
+        }]
+        
+
+    }
