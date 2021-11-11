@@ -1,7 +1,7 @@
 # hackbar 
 ## installation
 ```
-open chrome browser -> Manage extensions -> enable Developer mode 
+open chrome browser -> Manage extensions -> enable Developer mode -> Load unpacked -> select the folder
 ```
 <img src="https://raw.githubusercontent.com/kira2040k/codes/main/images/image.png">
 
