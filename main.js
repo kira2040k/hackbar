@@ -159,12 +159,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
 });
 function whitelist() {
-    list = ["https://www.google.com/","https://duckduckgo.com/"]
+    list = ["https://yandex.com/search/?text=","https://www.google.com/search?q=","https://duckduckgo.com/?q=","https://www.bing.com/search?q="]
+    let domain = window.location
     for(i=0;i<list.length;i++){
-        if(list[i].includes(window.location)) return true;
+        if(domain.toString().includes(list[i])) return true;
 
     }
 }
+
 // git test
 window.addEventListener('load', (event) => {
     if(whitelist()) return;
